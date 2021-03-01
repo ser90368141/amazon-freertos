@@ -104,3 +104,7 @@
 [submodule "vendors/cypress/MTB/libraries/lpa"]
 	path = vendors/cypress/MTB/libraries/lpa
 	url = https://github.com/cypresssemiconductorco/lpa.git
+[submodule "freertos_kernel"]
+	path = freertos_kernel
+	url = https://github.com/ser90368141/FreeRTOS-Kernel.git
+	branch = fix_memory_for_esp32
