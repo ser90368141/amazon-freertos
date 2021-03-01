@@ -465,12 +465,13 @@ set_source_files_properties(${AFR_ROOT_DIR}/libraries/c_sdk/standard/mqtt/test/u
     PROPERTIES COMPILE_FLAGS
     "-Wno-restrict")
 
-set(IDF_TARGET esp32)
+set(IDF_TARGET esp32s2)
 set(ENV{IDF_PATH} ${esp_idf_dir})
 
 # If external project has set sdkconfig.defaults do not overwrite
 if (NOT IDF_SDKCONFIG_DEFAULTS)
     # Fetch sdkconfig.defaults and modify the custom partition table csv path
+    message("WARNING: IDF_SDKCONFIG_DEFAULTS not set. Using sdkcongif from amazone-freertos")
     file(READ "${board_dir}/sdkconfig.defaults" file_sdkconfig_default)
     string(REGEX REPLACE "partition-table.csv" "${board_dir}/partition-table.csv" file_sdkconfig_default "${file_sdkconfig_default}")
     file(WRITE "${CMAKE_BINARY_DIR}/sdkconfig.defaults" "${file_sdkconfig_default}")
@@ -515,7 +516,7 @@ endif()
 
 idf_build_process(esp32s2
                     SDKCONFIG ${CMAKE_BINARY_DIR}/sdkconfig
-                    SDKCONFIG_DEFAULTS ${CMAKE_BINARY_DIR}/sdkconfig.defaults
+                    SDKCONFIG_DEFAULTS ${IDF_SDKCONFIG_DEFAULTS}
                     BUILD_DIR ${CMAKE_BINARY_DIR})
 
 idf_build_get_property(idf_compile_options "COMPILE_OPTIONS")

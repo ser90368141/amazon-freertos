@@ -32,6 +32,8 @@
 #ifndef IOT_NETWORK_TYPES_H_
 #define IOT_NETWORK_TYPES_H_
 
+#include "stdint.h"
+
 /**
  * @brief Network types supported by FreeRTOS.
  */
